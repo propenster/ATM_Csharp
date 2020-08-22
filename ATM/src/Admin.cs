@@ -4,7 +4,7 @@ using System;
 namespace ATM.AtM_Csharp
 {
 
-	//List of all available matches as Enum... 
+//List of all available matches as Enum... 
 //Will be refactored to a single class later...
 
 public Enum matchesAvailable = 
@@ -18,22 +18,20 @@ public Enum matchesAvailable =
 };
 
 
+
 class User{
 
-/** private long UserId;
-// private string FullName;
-// private string Email;
-// private string Password;
-// private decimal UserBalance;
-// public Enum MatchesAvailable = { ManUtd_vs_Chelsea, Wolvesburg_vs_Tottenham, Arsenal_vs_Liverpool, NewCastle_vs_Burnley, ManCity_vs_Leicester
+private long UserId;
+private string FullName;
+private string Email;
+private string Password;
+private decimal UserBalance;
 
-
-// }
 
 //List<Match> matches;
 
 public User(long id, string fullName, string email, string password, decimal balance) 
-{
+	{
 	this.UserId = id;
 	this.FullName = fullName;
 	this.Email = email;
@@ -42,28 +40,35 @@ public User(long id, string fullName, string email, string password, decimal bal
 
 }
 
-*/
-
-public long UserId{ get; set;}
-public string FullName{ get; set;}
-public string Email{ get; set; }
+public long UserId{ get; set; }
+public string FullName{ get; set; }
+public string Email{ get; set;}
 public string Password { get; set; }
 public decimal BalanceProperty
 {
-	if(UserBalance < 0){
-	UserBalance = 0; }
+	//Make Sure User Account Balance is never negative....
+	if(UserBalance < 0)
+	{
+		UserBalance = 0; 
+	}
 	return UserBalance = value;
 }
-public MatchesAvailable { get; set; }
 
-//User-level Methods downl here..
 public static void viewMatches()
 {
-	foreach(Enum  match in  matchhesAvailable)
+	foreach(Enum  match in  matchesAvailable)
 	{
 		Console.WriteLine(match);
 	}
 
+}
+
+public void getAllUsers(User[] users)
+{
+	for(User user in users)
+	{
+		Console.WriteLine(user);
+	}
 }
 
 public void BookTicket(string matchId, int quantity)
@@ -74,24 +79,10 @@ public void BookTicket(string matchId, int quantity)
 
 public void fundMyAccount(decimal Amount)
 {
-	if(!(Amount<0))
-	{
-		BalanceProperty +=Amount;
+	if(!(Amount<0)){
+	BalanceProperty += Amount;
+
 	}
-	else
-	{
-		Console.WriteLine("Error 000211XX: !Deposit Failed! You cannot deposit an amount less than NGN1:00");
-	}
-
-
-}
-
-@override
-public void ToString()
-{
-	// ToString method implementation Here!....
-}
-
 }
 }
 }
